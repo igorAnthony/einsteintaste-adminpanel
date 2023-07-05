@@ -8,8 +8,8 @@ class ProductBinding implements Bindings {
   
   @override
   void dependencies(){
-    Get.lazyPut<ProductProvider>(()=>ProductProvider());
-    Get.lazyPut<ProductRepository>(()=>ProductRepository(productProvider: Get.find<ProductProvider>()));
-    Get.lazyPut<ProductController>(()=>ProductController());
+    Get.lazyPut<ProductProvider>(()=>ProductProvider(), fenix: true);
+    Get.lazyPut<ProductRepository>(()=>ProductRepository(productProvider: Get.find<ProductProvider>()), fenix: true);
+    Get.lazyPut<ProductController>(()=>ProductController(), fenix: true);
   }
 }

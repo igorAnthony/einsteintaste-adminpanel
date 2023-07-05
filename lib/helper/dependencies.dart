@@ -12,10 +12,11 @@ class InitBinding implements Bindings {
   void dependencies(){
     LoginBinding().dependencies();
     RegisterBinding().dependencies();
+    AdminBinding().dependencies();
     CategoryBinding().dependencies();
     OrdersBinding().dependencies();
     OverviewBinding().dependencies();
-    AdminBinding().dependencies();
+    
     ProductBinding().dependencies();
   }
 

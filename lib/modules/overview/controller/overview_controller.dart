@@ -20,8 +20,6 @@ Map<int, String> monthMap = {
   12: 'Dec',
 };
 
-// Obtém as datas das vendas do seu banco de dados ou de outra fonte de dados
-// Exemplo hipotético: orderDates = [date1, date2, date3, ...];
 
   void setDataInSalesData(DateTime date){
     print("entrei aq");

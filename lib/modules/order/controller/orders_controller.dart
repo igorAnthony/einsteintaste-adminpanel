@@ -60,6 +60,7 @@ class OrdersController extends GetxController {
       for (Orders order in _ordersList) {
         Get.find<OverviewController>().setDataInSalesData(DateTime.parse(order.createdAt!));
       }
+
       quantSalesCalculation();
       update();
       isLoaded.value = true;

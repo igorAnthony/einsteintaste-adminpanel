@@ -42,7 +42,6 @@ class CategoryProvider extends GetxService{
         'Accept' : 'application/json',
         'Authorization' : 'Bearer ${box.read('token')}'
       });
-
       switch(response.statusCode){
         case 200:
           apiResponse.data = Category.fromJson(jsonDecode(response.body)['category']);

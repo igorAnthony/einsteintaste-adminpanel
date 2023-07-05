@@ -50,7 +50,7 @@ class OrdersProvider{
           apiResponse.data = jsonDecode(response.body)['orders']
               .map((p) => Orders.fromJson(p))
               .toList();
-          apiResponse.data = apiResponse.data as List<dynamic>;        
+          apiResponse.data = apiResponse.data as List<dynamic>;    
           break;
         case 401:
           apiResponse.error = ApiConstants.unauthorized;

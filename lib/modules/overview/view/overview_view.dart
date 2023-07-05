@@ -76,6 +76,7 @@ class _OverviewViewState extends State<OverviewView> {
                   ],
                 ),
               ) : Container(
+                height: MediaQuery.of(context).size.height*0.9,
                 child: Center(
                   child: CircularProgressIndicator(),
                 )

@@ -52,7 +52,7 @@ class ProductController extends GetxController {
     _getCategoryList();
     _productList.addAll(response.data as List<dynamic>);
     update();
-    // _isLoaded.value = true;
+    _isLoaded.value = true;
   }
   Future<void> changeTheVisibility(int index) async {
     ApiResponse response =

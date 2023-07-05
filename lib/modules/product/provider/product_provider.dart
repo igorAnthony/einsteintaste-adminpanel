@@ -43,7 +43,6 @@ class ProductProvider extends GetxService{
           apiResponse.data = jsonDecode(response.body)['products']
               .map((p) => Products.fromJson(p))
               .toList();
-          apiResponse.data as List<dynamic>;
           break;
         case 404:
           apiResponse.error = jsonDecode(response.body)['message'];

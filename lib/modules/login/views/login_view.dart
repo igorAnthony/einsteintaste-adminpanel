@@ -70,26 +70,18 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ),
                     SizedBox(height: Dimensions.height30),
-                    controller.isLoading.value
-                        ? const Center(
-                            child: CircularProgressIndicator(
-                              strokeWidth: 3,
-                            ),
-                          )
-                        : Center(
-                          child: kTextButton(
-                            fontSize: Dimensions.font20,
-                            paddingVertical: Dimensions.height20, 
-                            paddingHorizontal: Dimensions.width30,
-                            borderRadius: Dimensions.radius5,
-                            backgroundColor: AppColors.iconColor3,
-                            'Sign in', () {
-                              if (controller.formKey.currentState!.validate()) {
-                                controller.login();
-                              }
-                            }
-                          ),
-                        ),
+                    kTextButton(
+                      fontSize: Dimensions.font20,
+                      paddingVertical: Dimensions.height20, 
+                      paddingHorizontal: Dimensions.width30,
+                      borderRadius: Dimensions.radius5,
+                      backgroundColor: AppColors.iconColor3,
+                      'Sign in', () {
+                        if (controller.formKey.currentState!.validate()) {
+                          controller.login();
+                        }
+                      }
+                    ),
                     SizedBox(height: Dimensions.height20),
                     kLoginOrRegisterHint("Not registered yet? ", 'Register here',
                         () {

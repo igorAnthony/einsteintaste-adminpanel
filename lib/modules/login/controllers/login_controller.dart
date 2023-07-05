@@ -1,5 +1,5 @@
 import 'package:eisteintaste/global/constant/route.dart';
-import 'package:eisteintaste/global/widgets/show_snack_bar.dart';
+import 'package:eisteintaste/modules/home/controller/user_controller.dart';
 import 'package:eisteintaste/modules/login/repository/login_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,21 +11,33 @@ class LoginController extends GetxController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  var isLoading = false.obs;
   var isError = false.obs;
   var errorMessage = ''.obs;
   var user = User().obs;
 
   Future<void> login() async {
     if(formKey.currentState!.validate()){
-      isLoading.value = true;
-      final auth = await loginRepo.loginUser(emailController.text, passwordController.text);
-      if(auth.error == null){
+      
+      final response = await loginRepo.loginUser(emailController.text, passwordController.text);
+      if(response.error == null){
+        Get.showSnackbar(
+          GetSnackBar(
+            message: "The user has successfully logged in.",
+            icon: const Icon(Icons.refresh),
+            duration: const Duration(seconds: 1),
+          ),
+        );
         Get.offAndToNamed(Routes.homeRoute);
-        showMessageSnackbarBottom("The user has successfully logged in.");
+        Get.find<UserController>().init();
       }  
       else{
-        showMessageTop("Alert", "${auth.error}");
+        Get.snackbar(
+          "Alert",
+          "${response.error}",
+          colorText: Colors.white,
+          backgroundColor: Colors.redAccent,
+          icon: const Icon(Icons.add_alert),
+        );
       } 
     }
   }

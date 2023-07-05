@@ -5,7 +5,6 @@ import 'package:eisteintaste/global/constant/dimensions.dart';
 import 'package:eisteintaste/global/constant/route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeView extends StatefulWidget {
   const WelcomeView({super.key});

@@ -6,6 +6,6 @@ class OverviewBinding implements Bindings {
   
   @override
   void dependencies(){
-    Get.lazyPut<OverviewController>(()=>OverviewController());
+    Get.lazyPut<OverviewController>(()=>OverviewController(), fenix: true);
   }
 }
