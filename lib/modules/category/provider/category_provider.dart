@@ -73,6 +73,7 @@ class CategoryProvider extends GetxService{
       body: {
         'name' : categoryName,
       });
+      print(response.body);
       switch(response.statusCode){
         case 200:
           apiResponse.data = Category.fromJson(jsonDecode(response.body)['category']);
@@ -88,6 +89,7 @@ class CategoryProvider extends GetxService{
           break;
       }
     } catch (e){
+      print(e);
       apiResponse.error = ApiConstants.serverError;
     }
     return apiResponse;

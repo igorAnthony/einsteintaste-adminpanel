@@ -67,7 +67,6 @@ class _ProductListViewState extends State<ProductListView> {
                     }
                     
                     productName = product.name!;
-                    
                     return Container(
                       margin: EdgeInsets.symmetric(vertical: Dimensions.height10, horizontal: Dimensions.width10),
                       child: Row(
@@ -81,13 +80,11 @@ class _ProductListViewState extends State<ProductListView> {
                               height: Dimensions.productImgSize*1.35,
                               width: Dimensions.productImgSize*1.35,
                               decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.circular(Dimensions.radius10),
-                                  color: Colors.orange,
-                                  image: DecorationImage(
-                                    image: AssetImage("assets/images/food3.jpg"),
-                                    fit: BoxFit.cover,
-                                  )),
+                                image: product.image != null ?
+                                  DecorationImage(image: NetworkImage(product.image!), fit: BoxFit.cover) : null,
+                                borderRadius: BorderRadius.circular(25),
+                                color: Colors.amber
+                              ),
                             ),
                           ),
                           Expanded(

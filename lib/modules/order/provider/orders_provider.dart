@@ -65,11 +65,11 @@ class OrdersProvider{
     }
     return apiResponse;
   }
-  Future<ApiResponse> getDetailsOfOrders(int orders_id) async {
+  Future<ApiResponse> getDetailsOfOrders(int order_id) async {
     ApiResponse apiResponse = ApiResponse();
 
     try {
-      final response = await http.get(Uri.parse('${ApiConstants.ordersItemsURL}/${orders_id}'),
+      final response = await http.get(Uri.parse('${ApiConstants.ordersItemsURL}/${order_id}'),
           headers: {
             'Accept': 'application/json',
             'Authorization': 'Bearer ${box.read('token')}'

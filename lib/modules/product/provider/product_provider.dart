@@ -52,7 +52,6 @@ class ProductProvider extends GetxService{
           break;
       }
     } catch (e) {
-      print(e);
       apiResponse.error = ApiConstants.serverError;
     }
     return apiResponse;
@@ -70,7 +69,8 @@ class ProductProvider extends GetxService{
         'description' : product.description,
         'id_category': "${product.id_category}",
         'price' : product.price.toString(),
-        'visibility' : product.visibility
+        'visibility' : product.visibility,
+        'image' : product.image
       });
       
       switch(response.statusCode){
@@ -107,6 +107,7 @@ class ProductProvider extends GetxService{
         'id_category': "${product.id_category}",
         'price' : product.price.toString(),
         'visibility' : product.visibility,
+        'image' : product.image
         
       });
       switch(response.statusCode){

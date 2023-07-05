@@ -53,11 +53,11 @@ class CategoryController extends GetxController {
     ApiResponse response = await _categoryRepository.createCategory(nameController.text);
     if(response.error == null){
       Category cat = response.data as Category;
-      _categoryList.add(response.data);
-      showMessageSnackbarBottom("Item has been added");
+      _categoryList.add(cat);
+      showMessageSnackbarBottom("Category has been added");
       update();
     }else{
-      showMessageTop("Alert", "There was a problem trying to register: " + response.error!);
+      showMessageTop("Alert", "There was a problem trying to add:  ${response.error!}");
     }   
   }
   Future<void> updateCategory(int index) async{
@@ -65,9 +65,9 @@ class CategoryController extends GetxController {
     ApiResponse response = await _categoryRepository.updateCategory(_categoryList[index].id, nameController.text);
      if(response.error == null){
       update();
-      showMessageSnackbarBottom("Item has been updated");
+      showMessageSnackbarBottom("Category has been updated");
     }else{
-      showMessageTop("Alert", "There was a problem trying to update: " + response.error!);
+      showMessageTop("Alert", "There was a problem trying to update: ${response.error!}");
     }
   }
   Future<void> deleteCategory(int index) async{
@@ -75,10 +75,10 @@ class CategoryController extends GetxController {
       ApiResponse response = await _categoryRepository.deleteCategory(_categoryList[index].id);
       if(response.error == null){
         _categoryList.removeAt(index);
-        showMessageSnackbarBottom("Item has been deleted");
+        showMessageSnackbarBottom("Category has been deleted");
         update();
       }else{
-        showMessageTop("Alert", "There was a problem trying to delete: " + response.error!);
+        showMessageTop("Alert", "There was a problem trying to delete: ${response.error!}");
       }
     }
   }

@@ -3,6 +3,7 @@ class User {
   String? name;
   String? email;
   String? token;
+  String? image;
   String? phoneNumber;
 
   User({this.id, this.name, this.email, this.token, this.phoneNumber});

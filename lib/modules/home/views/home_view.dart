@@ -4,6 +4,7 @@ import 'package:eisteintaste/global/widgets/icon_and_text.dart';
 import 'package:eisteintaste/global/widgets/text.dart';
 import 'package:eisteintaste/modules/home/controller/admin_controller.dart';
 import 'package:eisteintaste/modules/category/views/category_view.dart';
+import 'package:eisteintaste/modules/home/controller/user_controller.dart';
 import 'package:eisteintaste/modules/order/views/orders_view.dart';
 import 'package:eisteintaste/modules/overview/view/overview_view.dart';
 import 'package:eisteintaste/modules/product/controllers/product_controller.dart';
@@ -48,8 +49,14 @@ class _DashboardViewPageState extends State<DashboardView> {
                 )
               ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                bigText('AdminPanel')
+                bigText('AdminPanel'),
+                GestureDetector(
+                  onTap: () {
+                    Get.find<UserController>().logout();
+                  },
+                  child: smallText('Logout')),
               ],
             )
           ),

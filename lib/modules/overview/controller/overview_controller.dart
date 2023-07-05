@@ -22,7 +22,6 @@ Map<int, String> monthMap = {
 
 
   void setDataInSalesData(DateTime date){
-    print("entrei aq");
     String day = DateFormat('dd/MM/yyyy').format(date);
     
     if (salesData.containsKey(day)) {
@@ -32,7 +31,6 @@ Map<int, String> monthMap = {
     }
 
     salesData.forEach((day, quantity) {
-      print('Dia: $day, Quantidade de produtos vendidos: $quantity');
       update();
     });
   }

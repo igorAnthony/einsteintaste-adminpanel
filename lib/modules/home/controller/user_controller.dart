@@ -12,14 +12,13 @@ class UserController extends GetxController {
   void set user(User user) => _user = user;
   User get user => _user;
   
-  void logOut() async {
+  void logout() async {
     SharedPreferences prefs = Get.find<SharedPreferences>();
     prefs.remove('user');
     isLogged = false;
     user = User();
     update();
     Get.offNamed(Routes.welcomeRoute);
-    Get.lazyPut<UserController>(() => UserController());
   }
   void init() async {
     SharedPreferences prefs = Get.find<SharedPreferences>();

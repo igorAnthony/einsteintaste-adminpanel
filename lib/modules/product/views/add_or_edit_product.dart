@@ -2,10 +2,16 @@ import 'package:eisteintaste/global/constant/colors.dart';
 import 'package:eisteintaste/global/constant/decoration.dart';
 import 'package:eisteintaste/global/constant/dimensions.dart';
 import 'package:eisteintaste/global/widgets/text.dart';
+import 'package:eisteintaste/models/products_model.dart';
 import 'package:eisteintaste/modules/category/controllers/category_controller.dart';
+import 'package:eisteintaste/modules/home/controller/user_controller.dart';
 import 'package:eisteintaste/modules/product/controllers/product_controller.dart';
+import 'package:file_picker/_internal/file_picker_web.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:flutter/foundation.dart';
 
 class AddOrEditProductView extends StatefulWidget{
   final String pageName;
@@ -18,17 +24,40 @@ class AddOrEditProductView extends StatefulWidget{
 }
 
 class _AddOrEditProductViewState extends State<AddOrEditProductView> {
+  PlatformFile? _imageFile;
+  Future<void> _pickImage() async {
+    try {
+      // Pick an image file using file_picker package
+      FilePickerResult? result = await FilePickerWeb.platform.pickFiles(
+        type: FileType.image,
+      );
 
+      // If user cancels the picker, do nothing
+      if (result == null) return;
+
+      // If user picks an image, update the state with the new image file
+      setState(() {
+        _imageFile = result.files.first;
+      });
+    } catch (e) {
+      // If there is an error, show a snackbar with the error message
+      print(e);
+    }
+  }
+  
+  
   @override
   Widget build(BuildContext context) {
-
+    
     CategoryController categoryController = Get.find<CategoryController>();
     ProductController controller = Get.find<ProductController>();
+    Products product = Products();
     int? productId = widget.productId;
     String pageName = widget.pageName;
     
     if(productId != null){
       controller.updateTheValues(productId);
+      product = controller.productList[productId] as Products;
     }else{
       controller.reset();
     }
@@ -54,14 +83,26 @@ class _AddOrEditProductViewState extends State<AddOrEditProductView> {
             children: [
               Row(
                 children: [
-                  Container(
-                    height: Dimensions.profileImgSize,
-                    width: Dimensions.profileImgSize,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.iconColor1,
+                  GestureDetector(
+                    onTap: () async {
+                      _pickImage();
+                    },
+                    child: Container(
+                      height: Dimensions.profileImgSize,
+                      width: Dimensions.profileImgSize,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(60),
+                          image: _imageFile == null ? product.image != null ? DecorationImage(
+                            image: NetworkImage('${controller.productImage}'),
+                            fit: BoxFit.cover
+                          ) : null : DecorationImage(
+                            image: MemoryImage(Uint8List.fromList(_imageFile!.bytes!)),
+                            fit: BoxFit.cover
+                          ),
+                          color: Colors.purpleAccent
+                        ),
+                        child: Icon(Icons.image_search, size: 50,color: Colors.white,),
                     ),
-                    child: Icon(Icons.person, size: 50,color: Colors.white,),
                   ),
                   SizedBox(width: Dimensions.width20),
                   Expanded(
@@ -173,9 +214,9 @@ class _AddOrEditProductViewState extends State<AddOrEditProductView> {
                   children: [
                     kTextButton(fontSize: Dimensions.font14, borderRadius: Dimensions.height5, "Add product", (){
                       if(productId != null){
-                        controller.editItem(productId);
+                        controller.editItem(productId, _imageFile);
                       }else{
-                        controller.addItem();
+                        controller.addItem(_imageFile);
                       }
                       controller.currentIndex.value = 0;
                     }, backgroundColor: AppColors.iconColor1),

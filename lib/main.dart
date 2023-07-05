@@ -9,7 +9,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   final sharedPreferences = await SharedPreferences.getInstance();
-  Get.put<SharedPreferences>(sharedPreferences, permanent: true);  runApp(
+  Get.put<SharedPreferences>(sharedPreferences, permanent: true);  
+  runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
