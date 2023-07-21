@@ -1,7 +1,7 @@
 
 <p>video demonstrando o funcionamento do app -> <a href="https://www.youtube.com/watch?v=FAr_u7Qc9rk"> Einstein Taste: Cliente App - A Complete Restaurant Experience </a></p>
 <p align="center"> <img src="https://github.com/igorAnthony/einsteintaste-app/blob/main/assets/images/logo3.png" width="300px"></p>
-<h1 align="center">Backend
+<h1 align="center">Painel Administrativo do app Einstein Taste
 </h1>
 <h2>Descrição</h2>
 <p>
